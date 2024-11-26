@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gracias por tu compra</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+
+        .container {
+            text-align: center;
+            padding: 30px;
+            background-color: #fff;
+        }
+
+        h1 {
+            font-size: 26px;
+            color: #4CAF50;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 18px;
+            color: #555;
+            margin: 0;
+        }
+
+        .footer {
+            font-size: 14px;
+            color: #aaa;
+            margin-top: 20px;
+        }
+
+        a {
+            color: #4CAF50;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .timer {
+            font-size: 16px;
+            color: #888;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>¡Gracias por tu compra!</h1>
+        <p>Tu pedido ha sido recibido correctamente y está siendo procesado.</p>
+        <div class="timer">
+            Redirigiendo en <span id="countdown">5</span> segundos...
+        </div>
+    </div>
+
+    <script>
+        // Temporizador
+        let countdownElement = document.getElementById('countdown');
+        let timeLeft = 5; // Tiempo en segundos
+
+        // Actualizar el contador cada segundo
+        let timer = setInterval(function() {
+            timeLeft--;
+            countdownElement.textContent = timeLeft;
+            
+            // Cuando el contador llegue a 0, redirigir
+            if (timeLeft <= 0) {
+                sessionStorage.removeItem("shopping_cart")
+                clearInterval(timer); // Detener el temporizador
+                window.location.href = "/"; // Redirigir a la página principal
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
